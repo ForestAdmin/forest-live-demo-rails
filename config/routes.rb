@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     post '/actions/upload-legal-docs' => 'companies#upload_legal_docs'
     post '/actions/charge-credit-card' => 'customers#charge_credit_card'
     post '/actions/generate-invoice' => 'customers#generate_invoice'
+    post '/products/actions/import-data' => 'products#import_data'
 
     get '/Product/:product_id/buyers' => 'products#buyers'
 

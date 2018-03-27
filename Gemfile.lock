@@ -80,6 +80,7 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     crass (1.0.3)
+    data_uri (0.1.0)
     erubi (1.7.1)
     execjs (2.7.0)
     faraday (0.13.1)
@@ -221,6 +222,7 @@ DEPENDENCIES
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
+  data_uri
   filesize
   forest_liana
   jbuilder (~> 2.5)
