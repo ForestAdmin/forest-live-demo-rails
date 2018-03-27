@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  Company: MyString
+  Customer: MyString
+  Delivery: MyString
+  Document: MyString
+  Order: MyString
+  Product: MyString
+  Transaction: MyString
+
+two:
+  Company: MyString
+  Customer: MyString
+  Delivery: MyString
+  Document: MyString
+  Order: MyString
+  Product: MyString
+  Transaction: MyString
