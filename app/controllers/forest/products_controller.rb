@@ -14,26 +14,6 @@ class Forest::ProductsController < ForestLiana::ApplicationController
   end
 
   def import_data
-    uri = URI::Data.new(params.dig('data', 'attributes', 'values', 'CSV file'))
-
-    CSV.parse(uri.data, { col_sep: ';' }).each do |row|
-      price = 0
-      case params.dig('data', 'attributes', 'values', 'Type')
-      when 'phone'
-        price = rand(300..1000) * 100
-      when 'dress'
-        price = rand(10..200) * 100
-       when 'toy'
-         price = rand(5..100) * 100
-      end
-
-      Product.create({
-        label: row[0],
-        price: price,
-        picture: row[1].gsub('//i5.walmartimages.com/asr/', "//s3-#{ENV['S3_REGION']}.amazonaws.com/#{ENV['S3_BUCKET']}/livedemo/"),
-      })
-    end
-
-    render json: { success: 'Data successfuly imported!' }
+    render status: 400, json: { error: 'You can only read data on this public demo application.' }
   end
 end
