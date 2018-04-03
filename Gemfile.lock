@@ -83,6 +83,8 @@ GEM
     data_uri (0.1.0)
     erubi (1.7.1)
     execjs (2.7.0)
+    faker (1.8.7)
+      i18n (>= 0.7)
     faraday (0.13.1)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.23)
@@ -223,6 +225,7 @@ DEPENDENCIES
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
   data_uri
+  faker
   filesize
   forest_liana
   jbuilder (~> 2.5)
