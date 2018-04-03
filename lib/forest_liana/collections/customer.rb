@@ -43,4 +43,8 @@ class Forest::Customer
     address = Address.find_by(customer_id: object.id)
     "#{address[:address_line_1]} #{address[:address_line_2]} #{address[:address_city]} #{address[:country]}"
   end
+
+  field :age, type: 'Number' do
+    ((Time.zone.now - object.birth_date.to_time) / 1.year.seconds).floor
+  end
 end
