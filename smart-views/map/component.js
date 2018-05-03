@@ -26,6 +26,12 @@ export default Ember.Component.extend({
   displayMap: function () {
     if (!this.get('loaded')) { return; }
 
+    if (this.map) {
+      this.map.off();
+      this.map.remove();
+      this.map = null;
+    }
+
     var markers = [];
     $('#map_canvas').height($('.l-content').height());
 
