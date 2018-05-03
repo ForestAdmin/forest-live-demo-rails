@@ -12,7 +12,7 @@
        height: 100vh;
        background:#F2F6FA;
        border-right: 1px solid #D9DDE1;
-       overflow: scroll 
+       overflow: scroll
   }
    .wrapper-card {
        width: 100%;
@@ -268,7 +268,7 @@
   <div class="wrapper-list">
     {{#each records as |record|}}
       <a href="#" {{action "selectRecord" record}}>
-        <div class="list--item">
+        <div class="list--item {{if (eq currentRecord record) 'selected'}}">
           <div class="list--item__values-left">
             <h3><span>to :</span> {{record.forest-customer.forest-firstname}} {{record.forest-customer.forest-lastname}}</h3>
             <p><span>order ID</span> : {{record.id}}</p>
