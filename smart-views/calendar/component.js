@@ -1,41 +1,61 @@
 'use strict';
 import Ember from 'ember';
+import SmartViewMixin from 'client/mixins/smart-view-mixin';
 
-export default Ember.Component.extend({
+export default Ember.Component.extend(SmartViewMixin.default, {
   router: Ember.inject.service('-routing'),
-  store: Ember.inject.service('store'),
+  store: Ember.inject.service(),
+  conditionAfter: null,
+  conditionBefore: null,
   loaded: false,
   loadPlugin: function() {
     var that = this;
     Ember.run.scheduleOnce('afterRender', this, function () {
+      if (this.get('viewList.recordPerPage') !== 50) {
+        this.set('viewList.recordPerPage', 50);
+        this.sendAction('updateRecordPerPage');
+      }
+
       Ember.$.getScript('//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js', function () {
         that.set('loaded', true);
 
         $('#calendar').fullCalendar({
           allDaySlot: false,
           minTime: '00:00:00',
+          defaultDate: new Date(2018, 2, 1),
           eventClick: function (event, jsEvent, view) {
             that.get('router')
               .transitionTo('rendering.data.collection.list.viewEdit.details',
                 [that.get('collection.id'), event.id]);
           },
           viewRender: function(view, element) {
-            let params = {
-              filter: {
-                'start_date': '>' + view.start.toISOString() +
-                                ',<' + view.end.toISOString()
-              },
-              filterType: 'and',
-              timezone: 'America/Los_Angeles',
-              'page[number]': 1,
-              'page[size]': 50
-            };
+            const field = that.get('collection.fields').findBy('field', 'start_date');
 
-            that.get('store')
-              .query('forest_appointment', params)
-              .then((appointments) => {
-                that.set('appointments', appointments);
-              });
+            if (that.get('conditionAfter')) {
+              that.sendAction('removeCondition', that.get('conditionAfter'), true);
+              that.get('conditionAfter').destroyRecord();
+            }
+            if (that.get('conditionBefore')) {
+              that.sendAction('removeCondition', that.get('conditionBefore'), true);
+              that.get('conditionBefore').destroyRecord();
+            }
+
+            const conditionAfter = that.get('store').createRecord('condition');
+            conditionAfter.set('field', field);
+            conditionAfter.set('operator', 'is after');
+            conditionAfter.set('value', view.start);
+            that.set('conditionAfter', conditionAfter);
+
+            const conditionBefore = that.get('store').createRecord('condition');
+            conditionBefore.set('field', field);
+            conditionBefore.set('operator', 'is before');
+            conditionBefore.set('value', view.end);
+            that.set('conditionBefore', conditionBefore);
+
+            that.sendAction('addCondition', conditionAfter, true);
+            that.sendAction('addCondition', conditionBefore, true);
+
+            that.sendAction('fetchRecords');
           }
         });
       });
@@ -51,23 +71,20 @@ export default Ember.Component.extend({
     });
   }.on('init'),
   setEvent: function () {
-    if (!this.get('appointments')) { return; }
+    if (!this.get('records')) { return; }
 
     var events = [];
     $('#calendar').fullCalendar('removeEvents');
 
-    this.get('appointments').forEach(function (appointment) {
-			var event = {
-				id: appointment.get('id'),
-				title: appointment.get('forest-name'),
-				start: appointment.get('forest-start_date'),
- 				end: appointment.get('forest-end_date')
+    this.get('records').forEach(function (appointment) {
+      var event = {
+      	id: appointment.get('id'),
+      	title: appointment.get('forest-name'),
+      	start: appointment.get('forest-start_date'),
+      	end: appointment.get('forest-end_date')
+      };
 
-			};
-
-			$('#calendar').fullCalendar('renderEvent', event, true);
-		});
-  }.observes('loaded', 'appointments.[]')
+      $('#calendar').fullCalendar('renderEvent', event, true);
+    });
+  }.observes('loaded', 'records.[]')
 });
-
-
