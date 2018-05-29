@@ -44,18 +44,20 @@ export default Ember.Component.extend(SmartViewMixin.default, {
             conditionAfter.set('field', field);
             conditionAfter.set('operator', 'is after');
             conditionAfter.set('value', view.start);
+            conditionAfter.set('smartView', that.get('viewList'));
             that.set('conditionAfter', conditionAfter);
 
             const conditionBefore = that.get('store').createRecord('condition');
             conditionBefore.set('field', field);
             conditionBefore.set('operator', 'is before');
             conditionBefore.set('value', view.end);
+            conditionBefore.set('smartView', that.get('viewList'));
             that.set('conditionBefore', conditionBefore);
 
             that.sendAction('addCondition', conditionAfter, true);
             that.sendAction('addCondition', conditionBefore, true);
 
-            that.sendAction('fetchRecords');
+            that.sendAction('fetchRecords', { page: 0 });
           }
         });
       });
@@ -78,10 +80,10 @@ export default Ember.Component.extend(SmartViewMixin.default, {
 
     this.get('records').forEach(function (appointment) {
       var event = {
-      	id: appointment.get('id'),
-      	title: appointment.get('forest-name'),
-      	start: appointment.get('forest-start_date'),
-      	end: appointment.get('forest-end_date')
+          id: appointment.get('id'),
+          title: appointment.get('forest-name'),
+          start: appointment.get('forest-start_date'),
+          end: appointment.get('forest-end_date')
       };
 
       $('#calendar').fullCalendar('renderEvent', event, true);
