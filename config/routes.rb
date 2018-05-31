@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     post '/actions/mark-as-live' => 'companies#mark_as_live'
     post '/actions/upload-legal-docs' => 'companies#upload_legal_docs'
     post '/actions/charge-credit-card' => 'customers#charge_credit_card'
+    post '/actions/charge-credit-card/values' => 'customers#charge_credit_card_values'
     post '/actions/generate-invoice' => 'customers#generate_invoice'
     post '/products/actions/import-data' => 'products#import_data'
 
@@ -20,7 +21,7 @@ Rails.application.routes.draw do
     post '/stats/credit-card-country-repartition' => 'charts#credit_card_country_repartition'
     post '/stats/charges-per-day' => 'charts#charges_per_day'
   end
-  
+
   mount ForestLiana::Engine => '/forest'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
