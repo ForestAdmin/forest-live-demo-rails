@@ -1,18 +1,29 @@
+# default: &default
+#   adapter: postgresql
+#   hostname: localhost
+#   port: 5446
+#   username: forest
+#   password: secret
+#   pool: 5
+#   timeout: 5000
+
+# development:
+#   adapter: postgresql
+#   database: forest_live_demo_rails
+#   encoding: unicode
+#   pool: 5
+#   host: localhost
+#   port: 5446
+#   username: forest
+#   password: secret
+
 default: &default
   adapter: postgresql
-  hostname: localhost
-  port: 5446
-  username: forest
-  password: secret
-  pool: 5
-  timeout: 5000
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
-  adapter: postgresql
-  database: forest_live_demo_rails
-  encoding: unicode
-  pool: 5
-  host: localhost
-  port: 5446
-  username: forest
-  password: secret
+  <<: *default
+  database: forest-live-demo-rails_development

@@ -2,7 +2,7 @@ class Forest::CustomersController < ForestLiana::ApplicationController
 
   def generate_invoice
     data = open("#{File.dirname(__FILE__)}/../../../public/invoice-2342.pdf" )
-    send_data data.read, filename: 'invoice-2342.pdf', type: 'application/pdf', 
+    send_data data.read, filename: 'invoice-2342.pdf', type: 'application/pdf',
       disposition: 'attachment'
   end
 
@@ -37,4 +37,10 @@ class Forest::CustomersController < ForestLiana::ApplicationController
 EOF
     }
   end
+
+  def charge_credit_card_values
+    context = get_smart_action_context
+    render serializer: nil, json: { amount: 666, description: context[:fullname] }, status: :ok
+  end
+
 end
