@@ -24,7 +24,7 @@ export default Ember.Component.extend(SmartViewMixin.default, {
         $(`#${that.get('calendarId')}`).fullCalendar({
           allDaySlot: false,
           minTime: '00:00:00',
-          defaultDate: new Date(2018, 5, 1),
+          defaultDate: new Date(2018, 2, 1),
           eventClick: function (event, jsEvent, view) {
             that.get('router')
               .transitionTo('rendering.data.collection.list.viewEdit.details',
@@ -79,7 +79,7 @@ export default Ember.Component.extend(SmartViewMixin.default, {
 
     var events = [];
     var calendar = $(`#${this.get('calendarId')}`);
-  calendar.fullCalendar('removeEvents');
+    calendar.fullCalendar('removeEvents');
 
     this.get('records').forEach(function (appointment) {
       var event = {
