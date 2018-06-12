@@ -8,6 +8,7 @@ export default Ember.Component.extend(SmartViewMixin.default, {
   conditionAfter: null,
   conditionBefore: null,
   loaded: false,
+  calendarId: null,
   loadPlugin: function() {
     var that = this;
     Ember.run.scheduleOnce('afterRender', this, function () {
@@ -16,13 +17,14 @@ export default Ember.Component.extend(SmartViewMixin.default, {
         this.sendAction('updateRecordPerPage');
       }
 
+      that.set('calendarId', `${this.get('element.id')}-calendar`);
       Ember.$.getScript('//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js', function () {
         that.set('loaded', true);
 
-        $('#calendar').fullCalendar({
+        $(`#${that.get('calendarId')}`).fullCalendar({
           allDaySlot: false,
           minTime: '00:00:00',
-          defaultDate: new Date(2018, 2, 1),
+          defaultDate: new Date(2018, 5, 1),
           eventClick: function (event, jsEvent, view) {
             that.get('router')
               .transitionTo('rendering.data.collection.list.viewEdit.details',
@@ -57,7 +59,7 @@ export default Ember.Component.extend(SmartViewMixin.default, {
             that.sendAction('addCondition', conditionAfter, true);
             that.sendAction('addCondition', conditionBefore, true);
 
-            that.sendAction('fetchRecords', { page: 0 });
+            that.sendAction('fetchRecords', { page: 1 });
           }
         });
       });
@@ -76,7 +78,8 @@ export default Ember.Component.extend(SmartViewMixin.default, {
     if (!this.get('records')) { return; }
 
     var events = [];
-    $('#calendar').fullCalendar('removeEvents');
+    var calendar = $(`#${this.get('calendarId')}`);
+  calendar.fullCalendar('removeEvents');
 
     this.get('records').forEach(function (appointment) {
       var event = {
@@ -86,7 +89,7 @@ export default Ember.Component.extend(SmartViewMixin.default, {
           end: appointment.get('forest-end_date')
       };
 
-      $('#calendar').fullCalendar('renderEvent', event, true);
+      calendar.fullCalendar('renderEvent', event, true);
     });
   }.observes('loaded', 'records.[]')
 });

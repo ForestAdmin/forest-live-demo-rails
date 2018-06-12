@@ -1,28 +1,25 @@
 <style>
-  #calendar {
+  .calendar {
     padding: 20px;
     background: white;
-    height:100%
+    height:100%;
+    overflow: scroll;
   }
-
-  #calendar .fc-toolbar.fc-header-toolbar .fc-left {
+  .calendar .fc-toolbar.fc-header-toolbar .fc-left {
     font-size: 14px;
     font-weight: bold;
   }
-
-  #calendar .fc-day-header {
+  .calendar .fc-day-header {
     padding: 10px 0;
     background-color: #f7f7f7;
   }
-
-  #calendar .fc-event {
+  .calendar .fc-event {
     background-color: #f7f7f7;
     border: 1px solid #ddd;
     color: #555;
     font-size: 14px;
   }
-
-  #calendar .fc-day-grid-event {
+  .calendar .fc-day-grid-event {
     background-color: #4285f4;
     color: white;
     font-size: 10px;
@@ -31,4 +28,4 @@
   }
 </style>
 
-<div id='calendar'></div>
+<div id='{{calendarId}}' class="calendar"></div>
