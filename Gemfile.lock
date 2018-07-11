@@ -93,7 +93,7 @@ GEM
       multipart-post (>= 1.2, < 3)
     ffi (1.9.23)
     filesize (0.1.1)
-    forest_liana (2.6.1)
+    forest_liana (2.10.3)
       arel-helpers
       bcrypt
       groupdate
@@ -112,7 +112,7 @@ GEM
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
     jmespath (1.3.1)
-    jsonapi-serializers (1.0.0)
+    jsonapi-serializers (1.0.1)
       activesupport
     jwt (2.1.0)
     listen (3.1.5)
