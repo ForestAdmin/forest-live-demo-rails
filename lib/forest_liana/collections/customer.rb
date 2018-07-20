@@ -14,10 +14,8 @@ class Forest::Customer
     description: 'Explain the reason why you want to charge manually the customer here',
     type: 'String'
   },{
-    field: 'fullname',
-    isRequired: true,
-    description: 'to show how a prefilled fullname will work',
-    type: 'String'
+    field: 'stripe_id',
+    type: 'String',
   }]
 
   action 'Generate invoice', download: true
