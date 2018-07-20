@@ -13,5 +13,3 @@ ForestLiana.integrations = {
     custom_properties: ['Campaign Source', 'plan', 'tutorial complete'],
   }
 }
-
-
