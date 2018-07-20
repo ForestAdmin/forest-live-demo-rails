@@ -95,7 +95,7 @@ GEM
       multipart-post (>= 1.2, < 3)
     ffi (1.9.23)
     filesize (0.1.1)
-    forest_liana (2.10.5)
+    forest_liana (2.11.0)
       arel-helpers
       bcrypt
       groupdate
