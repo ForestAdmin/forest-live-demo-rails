@@ -43,4 +43,12 @@ class Forest::CompaniesController < ForestLiana::ApplicationController
     # Once the upload is finished, send a success message to the admin user in the UI.
     render json: { success: 'Legal documents are successfully uploaded.' }
   end
+
+  def new_emitted_transaction
+    #the code of the refresh cache smart action
+    attrs = params.dig('data','attributes', 'values')
+
+    #success message
+    render json: { success: 'New transaction emitted' }
+  end
 end

@@ -7,6 +7,16 @@ class Forest::Company
 
   action 'Mark as Live'
 
+  action 'New emitted transaction', fields: [{
+    field: "Beneficiary company",
+    description: "name of the company who will receive the transaction",
+    reference: "Company.id"
+  },{
+    field: "Amount",
+    type: "Number"
+  }
+  ]
+
   action 'Upload Legal Docs', type: 'single', fields: [{
     field: 'Certificate of Incorporation',
     description: 'The legal document relating to the formation of a company or corporation.',
