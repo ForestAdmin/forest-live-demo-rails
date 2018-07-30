@@ -11,11 +11,10 @@ class Forest::Company
     field: "Beneficiary company",
     description: "name of the company who will receive the transaction",
     reference: "Company.id"
-  },{
+  }, {
     field: "Amount",
     type: "Number"
-  }
-  ]
+  }]
 
   action 'Upload Legal Docs', type: 'single', fields: [{
     field: 'Certificate of Incorporation',

@@ -47,8 +47,27 @@ class Forest::CompaniesController < ForestLiana::ApplicationController
   def new_emitted_transaction
     #the code of the refresh cache smart action
     attrs = params.dig('data','attributes', 'values')
+    beneficiary_company_id = attrs['Beneficiary company']
+    emitter_company_id = params.dig('data','attributes')["ids"][0]
+    amount = attrs['Amount']
+    Transaction.create!(
+      emitter_company_id: emitter_company_id,
+      beneficiary_company_id: beneficiary_company_id,
+      beneficiary_iban: Faker::Code.imei,
+      emitter_iban: Faker::Code.imei,
+      vat_amount: Faker::Number.number(4),
+      fee_amount: Faker::Number.number(4),
+      status: ['to_validate', 'validated', 'rejected'].sample,
+      note: Faker::Lorem.paragraph,
+      amount: amount,
+      emitter_bic: Faker::Code.nric,
+      beneficiary_bic: Faker::Code.nric
+    )
 
     #success message
-    render json: { success: 'New transaction emitted' }
+    render json: { 
+      success: 'New transaction emitted',
+      refresh: { relationships: ['emitted_transactions'] },
+    }
   end
 end
