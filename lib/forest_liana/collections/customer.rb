@@ -3,8 +3,6 @@ class Forest::Customer
 
   collection :Customer
 
-  action 'Boom test'
-
   action 'Charge credit card', type: 'single', fields: [{
     field: 'amount',
     isRequired: true,
