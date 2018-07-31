@@ -44,12 +44,10 @@ class Forest::CompaniesController < ForestLiana::ApplicationController
     render json: { success: 'Legal documents are successfully uploaded.' }
   end
 
-  def new_emitted_transaction
-    
-    # here is the logic behind the smart action form
+  def add_new_transaction
     attrs = params.dig('data','attributes', 'values')
     beneficiary_company_id = attrs['Beneficiary company']
-    emitter_company_id = params.dig('data','attributes')["ids"][0]
+    emitter_company_id = params.dig('data','attributes')['ids'][0]
     amount = attrs['Amount']
     Transaction.create!(
       emitter_company_id: emitter_company_id,
@@ -65,7 +63,9 @@ class Forest::CompaniesController < ForestLiana::ApplicationController
       beneficiary_bic: Faker::Code.nric
     )
 
-    #success message and refresh cache
+    # the code below automatically refresh the related data 
+    # 'emitted_transactions' on the Companies' Summary View 
+    # after submitting the Smart action form.
     render json: { 
       success: 'New transaction emitted',
       refresh: { relationships: ['emitted_transactions'] },

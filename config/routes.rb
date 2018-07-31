@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   namespace :forest do
     get '/whoami' => 'admins#whoami'
 
-    post '/actions/new-emitted-transaction' => 'companies#new_emitted_transaction'
+    post '/actions/add-new-transaction' => 'companies#add_new_transaction'
     post '/actions/mark-as-live' => 'companies#mark_as_live'
     post '/actions/upload-legal-docs' => 'companies#upload_legal_docs'
     post '/actions/charge-credit-card' => 'customers#charge_credit_card'

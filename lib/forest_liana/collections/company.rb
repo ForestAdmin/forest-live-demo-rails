@@ -7,9 +7,9 @@ class Forest::Company
 
   action 'Mark as Live'
 
-  action 'New emitted transaction', fields: [{
+  action 'Add new transaction', fields: [{
     field: "Beneficiary company",
-    description: "name of the company who will receive the transaction",
+    description: "Name of the company who will receive the transaction.",
     reference: "Company.id"
   }, {
     field: "Amount",
