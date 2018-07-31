@@ -8,12 +8,12 @@ class Forest::Company
   action 'Mark as Live'
 
   action 'Add new transaction', fields: [{
-    field: "Beneficiary company",
-    description: "Name of the company who will receive the transaction.",
-    reference: "Company.id"
+    field: 'Beneficiary company',
+    description: 'Name of the company who will receive the transaction.',
+    reference: 'Company.id'
   }, {
-    field: "Amount",
-    type: "Number"
+    field: 'Amount',
+    type: 'Number'
   }]
 
   action 'Upload Legal Docs', type: 'single', fields: [{
