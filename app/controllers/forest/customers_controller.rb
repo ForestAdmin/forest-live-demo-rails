@@ -42,4 +42,14 @@ EOF
     context = get_smart_action_context
     render serializer: nil, json: { amount: 4520, stripe_id: context[:stripe_id] }, status: :ok
   end
+
+  def new_comment
+    content = params.dig('data','attributes','values','Content')
+    c_id = params.dig('data','attributes','ids')[0].to_i
+    Comment.create!(message: content, customer_id: c_id )
+    render json: { 
+      success: 'New comment added',
+      refresh: { relationships: ['comments'] },
+    }
+  end
 end

@@ -10,6 +10,9 @@ Rails.application.routes.draw do
     post '/actions/charge-credit-card/values' => 'customers#charge_credit_card_values'
     post '/actions/generate-invoice' => 'customers#generate_invoice'
     post '/products/actions/import-data' => 'products#import_data'
+    post '/orders/actions/approve-order' => 'orders#add_order'
+    post '/actions/add-comment' => 'comments#add_comment'
+    post '/actions/new-comment' => 'customers#new_comment'
 
     get '/Product/:product_id/buyers' => 'products#buyers'
 

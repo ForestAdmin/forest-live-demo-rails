@@ -36,4 +36,8 @@ class Forest::ProductsController < ForestLiana::ApplicationController
 
     render json: { success: 'Data successfuly imported!' }
   end
+
+  def add_order
+    binding.pry
+  end
 end

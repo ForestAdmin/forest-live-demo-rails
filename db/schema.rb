@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_03_171035) do
+ActiveRecord::Schema.define(version: 2018_08_20_125711) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,14 @@ ActiveRecord::Schema.define(version: 2018_04_03_171035) do
     t.string "status"
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.string "message"
+    t.bigint "customer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_comments_on_customer_id"
+  end
+
   create_table "companies", id: :integer, default: -> { "nextval('\"Companies_id_seq\"'::regclass)" }, force: :cascade do |t|
     t.string "name", null: false
     t.string "industry"
@@ -47,6 +55,13 @@ ActiveRecord::Schema.define(version: 2018_04_03_171035) do
     t.uuid "proof_of_address_id"
     t.uuid "bank_statement_id"
     t.uuid "passport_id"
+    t.text "merchants", default: [], array: true
+  end
+
+  create_table "contents", force: :cascade do |t|
+    t.string "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "customers", id: :serial, force: :cascade do |t|
@@ -96,6 +111,28 @@ ActiveRecord::Schema.define(version: 2018_04_03_171035) do
     t.string "picture"
   end
 
+  create_table "reference_lists", force: :cascade do |t|
+    t.bigint "response_id"
+    t.bigint "survey_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["response_id"], name: "index_reference_lists_on_response_id"
+    t.index ["survey_id"], name: "index_reference_lists_on_survey_id"
+  end
+
+  create_table "responses", force: :cascade do |t|
+    t.bigint "content_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["content_id"], name: "index_responses_on_content_id"
+  end
+
+  create_table "surveys", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+  end
+
   create_table "transactions", id: :serial, force: :cascade do |t|
     t.string "beneficiary_iban", null: false
     t.string "emitter_iban", null: false
@@ -117,6 +154,9 @@ ActiveRecord::Schema.define(version: 2018_04_03_171035) do
   add_foreign_key "orders", "customers", name: "orders_customer_id_fkey"
   add_foreign_key "orders", "deliveries", name: "orders_delivery_id_fkey"
   add_foreign_key "orders", "products", name: "orders_product_id_fkey"
+  add_foreign_key "reference_lists", "responses"
+  add_foreign_key "reference_lists", "surveys"
+  add_foreign_key "responses", "contents"
   add_foreign_key "transactions", "companies", column: "beneficiary_company_id", name: "transactions_beneficiary_company_id_fkey"
   add_foreign_key "transactions", "companies", column: "emitter_company_id", name: "transactions_emitter_company_id_fkey"
 end

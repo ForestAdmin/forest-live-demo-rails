@@ -3,7 +3,7 @@ class Forest::Company
 
   collection :Company
 
-  search_fields ['name', 'industry']
+  search_fields ['name', 'industry', 'merchants']
 
   action 'Mark as Live'
 

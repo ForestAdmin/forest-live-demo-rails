@@ -18,6 +18,12 @@ class Forest::Customer
     type: 'String',
   }]
 
+  action 'new comment', type: 'single', fields: [{
+    field: 'Content',
+    type: 'String',
+    isRequired: true
+  }]
+
   action 'Generate invoice', download: true
 
   set_fullname = lambda do |user_params, fullname|
