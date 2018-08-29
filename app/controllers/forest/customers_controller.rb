@@ -29,6 +29,6 @@ EOF
 
   def charge_credit_card_values
     context = get_smart_action_context
-    render serializer: nil, json: { amount: 666, description: context[:fullname] }, status: :ok
+    render serializer: nil, json: { amount: 4520, stripe_id: context[:stripe_id] }, status: :ok
   end
 end
