@@ -18,7 +18,7 @@ module LiveDemoRails
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'app.forestadmin.com'
+        origins '*'
         resource '*', headers: :any, methods: :any,
         expose: ['Content-Disposition']
       end

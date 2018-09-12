@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_03_171035) do
+ActiveRecord::Schema.define(version: 2018_09_10_133824) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,8 @@ ActiveRecord::Schema.define(version: 2018_04_03_171035) do
     t.string "avatar"
     t.date "birth_date"
     t.string "phone"
+    t.bigint "patient_status_id"
+    t.index ["patient_status_id"], name: "index_customers_on_patient_status_id"
   end
 
   create_table "deliveries", id: :serial, force: :cascade do |t|
@@ -88,6 +90,12 @@ ActiveRecord::Schema.define(version: 2018_04_03_171035) do
     t.datetime "shipped_at"
   end
 
+  create_table "patient_statuses", force: :cascade do |t|
+    t.integer "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "products", id: :serial, force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -113,10 +121,28 @@ ActiveRecord::Schema.define(version: 2018_04_03_171035) do
     t.string "status"
   end
 
+  create_table "treatment_tasks", force: :cascade do |t|
+    t.string "label"
+    t.boolean "is_done"
+    t.bigint "treatment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["treatment_id"], name: "index_treatment_tasks_on_treatment_id"
+  end
+
+  create_table "treatments", force: :cascade do |t|
+    t.string "overview"
+    t.bigint "customer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_treatments_on_customer_id"
+  end
+
   add_foreign_key "addresses", "customers", name: "addresses_company_id_fkey"
   add_foreign_key "orders", "customers", name: "orders_customer_id_fkey"
   add_foreign_key "orders", "deliveries", name: "orders_delivery_id_fkey"
   add_foreign_key "orders", "products", name: "orders_product_id_fkey"
   add_foreign_key "transactions", "companies", column: "beneficiary_company_id", name: "transactions_beneficiary_company_id_fkey"
   add_foreign_key "transactions", "companies", column: "emitter_company_id", name: "transactions_emitter_company_id_fkey"
+  add_foreign_key "treatment_tasks", "treatments"
 end
