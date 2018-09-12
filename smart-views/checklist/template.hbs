@@ -1,0 +1,18 @@
+<style>
+  .l-checklist__container {
+    margin-bottom: 5px;
+  }
+
+  .l-checklist__container .c-form__label--read {
+    display: inline-block;
+    vertical-align: bottom;
+    margin-left: 20px;
+  }
+</style>
+
+{{#each records as |record|}}
+  <div class="l-checklist__container">
+    {{input class=(if record.forest-is_done 'l-table__boolean l-table__boolean--true' 'l-table__boolean l-table__boolean--not-set') type="checkbox" name="isAdmin" checked=record.forest-isDone change=(action updateValue record)}}
+    <strong class="c-form__label--read c-clr-1-2 ">{{record.forest-label}}</strong>
+  </div>
+{{/each}}
