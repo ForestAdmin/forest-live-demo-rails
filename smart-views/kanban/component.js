@@ -18,63 +18,6 @@ export default Ember.Component.extend(SmartViewMixin.default, {
 
       Ember.$.getScript('//cdn.rawgit.com/SeyZ/jkanban/8cb7f795/dist/jkanban.js', () => {
         this.set('loaded', true);
-
-        var boards = [];
-
-        this.get('records').forEach((record) => {
-          boards.push({
-            id: record.get('id'),
-            title: record.get('forest-name'),
-            item: []
-          });
-
-          record.reload().then((record) => {
-            record.query('forest-customers', {
-              page: { size: 100, number: 1 }
-            })
-            .then((customers) => {
-              customers.forEach((customer) => {
-                this.get('kanban').addElement(record.get('id'), {
-                  id: customer.get('id'),
-                  title: `${customer.get('forest-firstname')} ${customer.get('forest-lastname')}`,
-                  click: () => {
-                    customer.reload().then((customer) => {
-                      if (customer.get('forest-treatment.id')) {
-                        this.get('router').transitionTo('rendering.data.collection.list.viewEdit.summary',
-                          [this.get('Treatment.id'), customer.get('forest-treatment.id')]);
-                      }
-                    });
-                  }
-                });
-              });
-            });
-          });
-        });
-
-        this.set('kanban', new jKanban({
-          element: `#${this.get('kanbanId')}`,
-          gutter: '10px',
-          widthBoard: '450px',
-          boards: boards,
-          dragBoards: false,
-          dropEl: (el, target, source, sibling) => {
-            return this.get('store')
-              .find('forest-Customer', el.dataset.eid)
-              .then((customer) => {
-                const newStatusId = `${$(target.parentElement).data('id')}`;
-                const newStatus = this.get('records').findBy('id', newStatusId);
-                customer.set('forest-patient_status', newStatus);
-
-                const environment = this.get('collection.rendering.environment');
-
-                this.get('relationshipUpdater')
-                  .updateBelongsTo(environment, 'Customer', customer, 'forest-patient_status', newStatus);
-              });
-          }
-        }));
-
-        $('.kanban-board').css('max-height', $('.collectionList__content').height() - 50);
-        $('.kanban-board').css('overflow', 'auto');
       });
 
       var cssLink = $('<link>');
@@ -86,5 +29,68 @@ export default Ember.Component.extend(SmartViewMixin.default, {
         href: '//cdn.rawgit.com/riktar/jkanban/f2a39a79/dist/jkanban.css'
       });
     });
-  }.on('init')
+  }.on('init'),
+  initKanbanRecords: function () {
+    if (!this.get('loaded')) { return; }
+    $(`#${this.get('kanbanId')}`).empty();
+
+    var boards = [];
+
+    this.get('records').forEach((record) => {
+      boards.push({
+        id: record.get('id'),
+        title: record.get('forest-name'),
+        item: []
+      });
+
+      record.reload().then((record) => {
+        record.query('forest-customers', {
+          page: { size: 100, number: 1 }
+        })
+        .then((customers) => {
+          customers.forEach((customer) => {
+            this.get('kanban').addElement(record.get('id'), {
+              id: customer.get('id'),
+              title: `${customer.get('forest-firstname')} ${customer.get('forest-lastname')}`,
+              click: () => {
+                customer.reload().then((customer) => {
+                  if (customer.get('forest-treatment.id')) {
+                    this.get('router').transitionTo('rendering.data.collection.list.viewEdit.summary',
+                      [this.get('Treatment.id'), customer.get('forest-treatment.id')]);
+                  }
+                });
+              }
+            });
+          });
+        });
+
+        $('.kanban-board').css('max-height', $('.collectionList__content').height() - 20);
+        $('.kanban-board').css('overflow', 'auto');
+      });
+    });
+
+
+    this.set('kanban', new jKanban({
+      element: `#${this.get('kanbanId')}`,
+      gutter: '10px',
+      widthBoard: '450px',
+      boards: boards,
+      dragBoards: false,
+      dropEl: (el, target, source, sibling) => {
+        return this.get('store')
+          .find('forest-Customer', el.dataset.eid)
+          .then((customer) => {
+            const newStatusId = `${$(target.parentElement).data('id')}`;
+            const newStatus = this.get('records').findBy('id', newStatusId);
+            customer.set('forest-patient_status', newStatus);
+
+            const environment = this.get('collection.rendering.environment');
+
+            this.get('relationshipUpdater')
+              .updateBelongsTo(environment, 'Customer', customer, 'forest-patient_status', newStatus);
+          });
+      }
+    }));
+
+  }.observes('loaded', 'records.[]'),
 });
