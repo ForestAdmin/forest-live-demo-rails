@@ -104,28 +104,6 @@ ActiveRecord::Schema.define(version: 2018_09_10_133824) do
     t.string "picture"
   end
 
-  create_table "reference_lists", force: :cascade do |t|
-    t.bigint "response_id"
-    t.bigint "survey_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["response_id"], name: "index_reference_lists_on_response_id"
-    t.index ["survey_id"], name: "index_reference_lists_on_survey_id"
-  end
-
-  create_table "responses", force: :cascade do |t|
-    t.bigint "content_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["content_id"], name: "index_responses_on_content_id"
-  end
-
-  create_table "surveys", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "name"
-  end
-
   create_table "transactions", id: :serial, force: :cascade do |t|
     t.string "beneficiary_iban", null: false
     t.string "emitter_iban", null: false
@@ -164,9 +142,6 @@ ActiveRecord::Schema.define(version: 2018_09_10_133824) do
   add_foreign_key "orders", "customers", name: "orders_customer_id_fkey"
   add_foreign_key "orders", "deliveries", name: "orders_delivery_id_fkey"
   add_foreign_key "orders", "products", name: "orders_product_id_fkey"
-  add_foreign_key "reference_lists", "responses"
-  add_foreign_key "reference_lists", "surveys"
-  add_foreign_key "responses", "contents"
   add_foreign_key "transactions", "companies", column: "beneficiary_company_id", name: "transactions_beneficiary_company_id_fkey"
   add_foreign_key "transactions", "companies", column: "emitter_company_id", name: "transactions_emitter_company_id_fkey"
   add_foreign_key "treatment_tasks", "treatments"
