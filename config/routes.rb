@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     post '/orders/actions/approve-order' => 'orders#add_order'
     post '/actions/add-comment' => 'comments#add_comment'
     post '/actions/new-comment' => 'customers#new_comment'
+    post '/actions/approve-transaction' => 'transactions#approve_transaction'
 
     get '/Product/:product_id/buyers' => 'products#buyers'
 

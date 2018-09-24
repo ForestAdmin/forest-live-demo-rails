@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2018_08_20_125711) do
-=======
 ActiveRecord::Schema.define(version: 2018_09_10_133824) do
->>>>>>> 77355562525b800cbe85c0bb48f53ff0b32a68c5
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,14 +33,6 @@ ActiveRecord::Schema.define(version: 2018_09_10_133824) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string "status"
-  end
-
-  create_table "comments", force: :cascade do |t|
-    t.string "message"
-    t.bigint "customer_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["customer_id"], name: "index_comments_on_customer_id"
   end
 
   create_table "companies", id: :integer, default: -> { "nextval('\"Companies_id_seq\"'::regclass)" }, force: :cascade do |t|
@@ -78,6 +66,7 @@ ActiveRecord::Schema.define(version: 2018_09_10_133824) do
     t.string "avatar"
     t.date "birth_date"
     t.string "phone"
+    t.string "favcolor"
     t.bigint "patient_status_id"
     t.index ["patient_status_id"], name: "index_customers_on_patient_status_id"
   end
