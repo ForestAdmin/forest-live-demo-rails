@@ -71,5 +71,4 @@ class Forest::CompaniesController < ForestLiana::ApplicationController
       refresh: { relationships: ['emitted_transactions'] },
     }
   end
-
 end

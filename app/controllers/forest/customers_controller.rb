@@ -42,5 +42,4 @@ EOF
     context = get_smart_action_context
     render serializer: nil, json: { amount: 4520, stripe_id: context[:stripe_id] }, status: :ok
   end
-
 end

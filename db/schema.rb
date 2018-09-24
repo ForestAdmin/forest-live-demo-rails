@@ -47,13 +47,6 @@ ActiveRecord::Schema.define(version: 2018_09_10_133824) do
     t.uuid "proof_of_address_id"
     t.uuid "bank_statement_id"
     t.uuid "passport_id"
-    t.text "merchants", default: [], array: true
-  end
-
-  create_table "contents", force: :cascade do |t|
-    t.string "category"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "customers", id: :serial, force: :cascade do |t|
@@ -66,7 +59,6 @@ ActiveRecord::Schema.define(version: 2018_09_10_133824) do
     t.string "avatar"
     t.date "birth_date"
     t.string "phone"
-    t.string "favcolor"
     t.bigint "patient_status_id"
     t.index ["patient_status_id"], name: "index_customers_on_patient_status_id"
   end

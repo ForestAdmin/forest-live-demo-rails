@@ -36,5 +36,4 @@ class Forest::ProductsController < ForestLiana::ApplicationController
 
     render json: { success: 'Data successfuly imported!' }
   end
-
 end
