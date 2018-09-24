@@ -3,6 +3,8 @@ class Forest::Company
 
   collection :Company
 
+  search_fields ['name', 'industry']
+
   action 'Mark as Live'
 
   action 'Add new transaction', fields: [{
