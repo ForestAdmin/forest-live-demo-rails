@@ -7,7 +7,7 @@ if ForestLiana::UserSpace.const_defined?('CompanyController')
       if teams.include?('Management')
         default_destroy
       else
-        render status: 403, plain: 'Sorry, you\'re now allowed to delete a company. Ask someone in the Management team.'
+        render status: 403, plain: 'Sorry, you\'re not allowed to delete a company. Ask someone in the Management team.'
       end
     end
   end
