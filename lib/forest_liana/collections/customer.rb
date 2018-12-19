@@ -48,6 +48,6 @@ class Forest::Customer
   end
 
   field :age, type: 'Number' do
-    ((Time.zone.now - object.birth_date.to_time) / 1.year.seconds).floor
+    ((Time.zone.now - object.birth_date.to_time) / 1.year.seconds).floor if object.birth_date
   end
 end
