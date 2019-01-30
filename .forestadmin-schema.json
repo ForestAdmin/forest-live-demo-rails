@@ -3659,7 +3659,7 @@
     "database_type": "postgresql",
     "framework_version": "5.2.0",
     "liana": "forest-rails",
-    "liana_version": "3.0.0.pre.beta.1",
+    "liana_version": "3.0.0-beta.3",
     "orm_version": "5.2.0"
   }
 }
