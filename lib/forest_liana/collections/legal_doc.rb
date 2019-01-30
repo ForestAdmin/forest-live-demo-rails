@@ -4,8 +4,8 @@ class Forest::LegalDoc
   collection :LegalDoc
 
   field :id, type: 'String'
-  field :url, type: 'String', widget: 'link', isReadOnly: true
-  field :last_modified, type: 'Date', isReadOnly: true
-  field :size, type: 'String', isReadOnly: true
-  field :is_verified, type: 'Boolean', isReadOnly: false
+  field :url, type: 'String', widget: 'link', is_read_only: true
+  field :last_modified, type: 'Date', is_read_only: true
+  field :size, type: 'String', is_read_only: true
+  field :is_verified, type: 'Boolean', is_read_only: false
 end

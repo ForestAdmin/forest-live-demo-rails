@@ -5,12 +5,12 @@ class Forest::Customer
 
   action 'Charge credit card', type: 'single', fields: [{
     field: 'amount',
-    isRequired: true,
+    is_required: true,
     description: 'The amount (USD) to charge the credit card. Example: 42.50',
     type: 'Number'
   }, {
     field: 'description',
-    isRequired: true,
+    is_required: true,
     description: 'Explain the reason why you want to charge manually the customer here',
     type: 'String'
   },{
@@ -48,6 +48,6 @@ class Forest::Customer
   end
 
   field :age, type: 'Number' do
-    ((Time.zone.now - object.birth_date.to_time) / 1.year.seconds).floor
+    ((Time.zone.now - object.birth_date.to_time) / 1.year.seconds).floor if object.birth_date
   end
 end
