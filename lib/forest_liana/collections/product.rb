@@ -9,13 +9,13 @@ class Forest::Product
     field: 'CSV file',
     description: 'A semicolon separated values file stores tabular data (numbers and text) in plain text',
     type: 'File',
-    isRequired: true
+    is_required: true
   }, {
     field: 'Type',
     description: 'Specify the product type to import',
     type: 'Enum',
     enums: ['phone', 'dress', 'toy'],
-    isRequired: true
+    is_required: true
   }]
 
   segment 'Bestsellers' do

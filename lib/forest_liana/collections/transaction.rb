@@ -9,7 +9,7 @@ class Forest::Transaction
     description: '⚠️ The reason will be sent to the customer ⚠️',
     type: 'String',
     widget: 'text area',
-    isRequired: true
+    is_required: true
   }]
 
   field :health_status, type: 'Enum', enums: ['suspicious', 'healthy'] do
