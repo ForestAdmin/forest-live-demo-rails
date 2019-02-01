@@ -96,6 +96,7 @@
       "is_virtual": false,
       "reference": "Customer.id",
       "inverse_of": "address",
+      "relationship": "BelongsTo",
       "widget": null,
       "validations": []
     }, {
@@ -471,6 +472,7 @@
       "is_virtual": false,
       "reference": "Transaction.id",
       "inverse_of": null,
+      "relationship": "HasMany",
       "widget": null,
       "validations": []
     }, {
@@ -486,6 +488,7 @@
       "is_virtual": false,
       "reference": "Transaction.id",
       "inverse_of": null,
+      "relationship": "HasMany",
       "widget": null,
       "validations": []
     }],
@@ -774,6 +777,7 @@
       "is_virtual": false,
       "reference": "PatientStatus.id",
       "inverse_of": "customers",
+      "relationship": "BelongsTo",
       "widget": null,
       "validations": []
     }, {
@@ -789,6 +793,7 @@
       "is_virtual": false,
       "reference": "Customer_stripe_payments.id",
       "inverse_of": null,
+      "relationship": "HasMany",
       "widget": null,
       "validations": []
     }, {
@@ -804,6 +809,7 @@
       "is_virtual": false,
       "reference": "Customer_stripe_invoices.id",
       "inverse_of": null,
+      "relationship": "HasMany",
       "widget": null,
       "validations": []
     }, {
@@ -819,6 +825,7 @@
       "is_virtual": false,
       "reference": "Customer_stripe_cards.id",
       "inverse_of": null,
+      "relationship": "HasMany",
       "widget": null,
       "validations": []
     }, {
@@ -834,6 +841,7 @@
       "is_virtual": false,
       "reference": "Customer_stripe_subscriptions.id",
       "inverse_of": null,
+      "relationship": "HasMany",
       "widget": null,
       "validations": []
     }, {
@@ -849,6 +857,7 @@
       "is_virtual": false,
       "reference": "Customer_stripe_bank_accounts.id",
       "inverse_of": null,
+      "relationship": "HasMany",
       "widget": null,
       "validations": []
     }, {
@@ -864,6 +873,7 @@
       "is_virtual": false,
       "reference": "Customer_mixpanel_events.id",
       "inverse_of": null,
+      "relationship": "HasMany",
       "widget": null,
       "validations": []
     }, {
@@ -879,6 +889,7 @@
       "is_virtual": false,
       "reference": "Address.id",
       "inverse_of": "customer",
+      "relationship": "HasOne",
       "widget": null,
       "validations": []
     }, {
@@ -894,6 +905,7 @@
       "is_virtual": false,
       "reference": "Order.id",
       "inverse_of": "customer",
+      "relationship": "HasMany",
       "widget": null,
       "validations": []
     }, {
@@ -909,6 +921,7 @@
       "is_virtual": false,
       "reference": "Treatment.id",
       "inverse_of": "customer",
+      "relationship": "HasOne",
       "widget": null,
       "validations": []
     }, {
@@ -1459,7 +1472,7 @@
       "is_virtual": false,
       "reference": "Customer.id",
       "inverse_of": null,
-      "relationship": null,
+      "relationship": "BelongsTo",
       "widget": null,
       "validations": null
     }],
@@ -1728,7 +1741,7 @@
       "is_virtual": false,
       "reference": "Customer.id",
       "inverse_of": null,
-      "relationship": null,
+      "relationship": "BelongsTo",
       "widget": null,
       "validations": null
     }],
@@ -1997,7 +2010,7 @@
       "is_virtual": false,
       "reference": "Customer.id",
       "inverse_of": null,
-      "relationship": null,
+      "relationship": "BelongsTo",
       "widget": null,
       "validations": null
     }],
@@ -2138,7 +2151,7 @@
       "is_virtual": false,
       "reference": "Customer.id",
       "inverse_of": null,
-      "relationship": null,
+      "relationship": "BelongsTo",
       "widget": null,
       "validations": null
     }],
@@ -2400,7 +2413,7 @@
       "is_virtual": false,
       "reference": "Customer.id",
       "inverse_of": null,
-      "relationship": null,
+      "relationship": "BelongsTo",
       "widget": null,
       "validations": null
     }],
@@ -2533,6 +2546,7 @@
       "is_virtual": false,
       "reference": "Order.id",
       "inverse_of": null,
+      "relationship": "HasMany",
       "widget": null,
       "validations": []
     }],
@@ -2764,6 +2778,7 @@
       "is_virtual": false,
       "reference": "Product.id",
       "inverse_of": "orders",
+      "relationship": "BelongsTo",
       "widget": null,
       "validations": []
     }, {
@@ -2779,6 +2794,7 @@
       "is_virtual": false,
       "reference": "Customer.id",
       "inverse_of": "orders",
+      "relationship": "BelongsTo",
       "widget": null,
       "validations": []
     }, {
@@ -2964,6 +2980,7 @@
       "is_virtual": false,
       "reference": "Customer.id",
       "inverse_of": "patient_status",
+      "relationship": "HasMany",
       "widget": null,
       "validations": []
     }],
@@ -3081,6 +3098,7 @@
       "is_virtual": false,
       "reference": "Order.id",
       "inverse_of": "product",
+      "relationship": "HasMany",
       "widget": null,
       "validations": []
     }, {
@@ -3338,6 +3356,7 @@
       "is_virtual": false,
       "reference": "Company.id",
       "inverse_of": null,
+      "relationship": "BelongsTo",
       "widget": null,
       "validations": []
     }, {
@@ -3353,6 +3372,7 @@
       "is_virtual": false,
       "reference": "Company.id",
       "inverse_of": null,
+      "relationship": "BelongsTo",
       "widget": null,
       "validations": []
     }, {
@@ -3502,6 +3522,7 @@
       "is_virtual": false,
       "reference": "Customer.id",
       "inverse_of": "treatment",
+      "relationship": "BelongsTo",
       "widget": null,
       "validations": []
     }, {
@@ -3547,6 +3568,7 @@
       "is_virtual": false,
       "reference": "TreatmentTask.id",
       "inverse_of": "treatment",
+      "relationship": "HasMany",
       "widget": null,
       "validations": []
     }],
@@ -3619,6 +3641,7 @@
       "is_virtual": false,
       "reference": "Treatment.id",
       "inverse_of": "treatment_tasks",
+      "relationship": "BelongsTo",
       "widget": null,
       "validations": []
     }, {
@@ -3659,7 +3682,7 @@
     "database_type": "postgresql",
     "framework_version": "5.2.0",
     "liana": "forest-rails",
-    "liana_version": "3.0.0-beta.3",
+    "liana_version": "3.0.0-beta.6",
     "orm_version": "5.2.0"
   }
 }
