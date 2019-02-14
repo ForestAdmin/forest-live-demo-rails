@@ -1,9 +1,12 @@
 class Forest::CompaniesController < ForestLiana::ApplicationController
   def mark_as_live
-    company_id = params.dig('data', 'attributes', 'ids').first
-    Company.update(company_id, status: 'live')
+    company_ids = params.dig('data', 'attributes', 'ids')
+    companies_count = company_ids.length
 
-    head :no_content
+    Company.where(id: company_ids).update_all(status: 'live')
+
+    message = companies_count > 1 ? 'Companies are now live!' : 'Company is now live!'
+    render json: { success: message }
   end
 
   def upload_legal_doc(company_id, doc, field)
@@ -63,10 +66,10 @@ class Forest::CompaniesController < ForestLiana::ApplicationController
       beneficiary_bic: Faker::Code.nric
     )
 
-    # the code below automatically refresh the related data 
-    # 'emitted_transactions' on the Companies' Summary View 
+    # the code below automatically refresh the related data
+    # 'emitted_transactions' on the Companies' Summary View
     # after submitting the Smart action form.
-    render json: { 
+    render json: {
       success: 'New transaction emitted',
       refresh: { relationships: ['emitted_transactions'] },
     }
