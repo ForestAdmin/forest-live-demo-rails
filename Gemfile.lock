@@ -101,7 +101,7 @@ GEM
       multipart-post (>= 1.2, < 3)
     ffi (1.9.25)
     filesize (0.2.0)
-    forest_liana (3.0.0.pre.beta.7)
+    forest_liana (3.0.0.pre.beta.8)
       arel-helpers
       base32
       bcrypt
@@ -266,7 +266,7 @@ DEPENDENCIES
   data_uri
   faker
   filesize
-  forest_liana (= 3.0.0.pre.beta.7)
+  forest_liana (= 3.0.0.pre.beta.8)
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   mixpanel_client

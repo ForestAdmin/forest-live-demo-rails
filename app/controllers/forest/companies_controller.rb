@@ -26,10 +26,10 @@ class Forest::CompaniesController < ForestLiana::ApplicationController
       beneficiary_bic: Faker::Code.nric
     )
 
-    # the code below automatically refresh the related data 
-    # 'emitted_transactions' on the Companies' Summary View 
+    # the code below automatically refresh the related data
+    # 'emitted_transactions' on the Companies' Summary View
     # after submitting the Smart action form.
-    render json: { 
+    render json: {
       success: 'New transaction emitted',
       refresh: { relationships: ['emitted_transactions'] },
     }
