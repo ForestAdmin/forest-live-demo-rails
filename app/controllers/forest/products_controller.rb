@@ -10,7 +10,7 @@ class Forest::ProductsController < ForestLiana::ApplicationController
     customers = orders.limit(limit).offset(offset).map(&:customer)
     count = orders.count
 
-    render json: serialize_models(customers, include: ['address'], count: count)
+    render json: serialize_models(customers, include: ['address'], meta: {count: count})
   end
 
   def import_data
