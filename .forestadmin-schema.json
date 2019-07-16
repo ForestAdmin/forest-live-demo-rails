@@ -24,7 +24,7 @@
       "widget": null,
       "validations": []
     }, {
-      "field": "address_line1",
+      "field": "address_line_1",
       "type": "String",
       "default_value": null,
       "enums": null,
@@ -39,7 +39,7 @@
       "widget": null,
       "validations": []
     }, {
-      "field": "address_line2",
+      "field": "address_line_2",
       "type": "String",
       "default_value": null,
       "enums": null,
@@ -217,21 +217,6 @@
       "widget": null,
       "validations": []
     }, {
-      "field": "status",
-      "type": "Enum",
-      "default_value": null,
-      "enums": ["confirmed", "unconfirmed"],
-      "integration": null,
-      "is_filterable": true,
-      "is_read_only": false,
-      "is_required": false,
-      "is_sortable": true,
-      "is_virtual": false,
-      "reference": null,
-      "inverse_of": null,
-      "widget": null,
-      "validations": []
-    }, {
       "field": "created_at",
       "type": "Date",
       "default_value": null,
@@ -251,6 +236,21 @@
       "type": "Date",
       "default_value": null,
       "enums": null,
+      "integration": null,
+      "is_filterable": true,
+      "is_read_only": false,
+      "is_required": false,
+      "is_sortable": true,
+      "is_virtual": false,
+      "reference": null,
+      "inverse_of": null,
+      "widget": null,
+      "validations": []
+    }, {
+      "field": "status",
+      "type": "Enum",
+      "default_value": null,
+      "enums": ["confirmed", "unconfirmed"],
       "integration": null,
       "is_filterable": true,
       "is_read_only": false,
@@ -370,6 +370,36 @@
       "widget": null,
       "validations": []
     }, {
+      "field": "created_at",
+      "type": "Date",
+      "default_value": null,
+      "enums": null,
+      "integration": null,
+      "is_filterable": true,
+      "is_read_only": false,
+      "is_required": false,
+      "is_sortable": true,
+      "is_virtual": false,
+      "reference": null,
+      "inverse_of": null,
+      "widget": null,
+      "validations": []
+    }, {
+      "field": "updated_at",
+      "type": "Date",
+      "default_value": null,
+      "enums": null,
+      "integration": null,
+      "is_filterable": true,
+      "is_read_only": false,
+      "is_required": false,
+      "is_sortable": true,
+      "is_virtual": false,
+      "reference": null,
+      "inverse_of": null,
+      "widget": null,
+      "validations": []
+    }, {
       "field": "certificate_of_incorporation_id",
       "type": "String",
       "default_value": null,
@@ -417,36 +447,6 @@
     }, {
       "field": "passport_id",
       "type": "String",
-      "default_value": null,
-      "enums": null,
-      "integration": null,
-      "is_filterable": true,
-      "is_read_only": false,
-      "is_required": false,
-      "is_sortable": true,
-      "is_virtual": false,
-      "reference": null,
-      "inverse_of": null,
-      "widget": null,
-      "validations": []
-    }, {
-      "field": "created_at",
-      "type": "Date",
-      "default_value": null,
-      "enums": null,
-      "integration": null,
-      "is_filterable": true,
-      "is_read_only": false,
-      "is_required": false,
-      "is_sortable": true,
-      "is_virtual": false,
-      "reference": null,
-      "inverse_of": null,
-      "widget": null,
-      "validations": []
-    }, {
-      "field": "updated_at",
-      "type": "Date",
       "default_value": null,
       "enums": null,
       "integration": null,
@@ -660,21 +660,6 @@
       "widget": null,
       "validations": []
     }, {
-      "field": "stripe_id",
-      "type": "String",
-      "default_value": null,
-      "enums": null,
-      "integration": null,
-      "is_filterable": true,
-      "is_read_only": false,
-      "is_required": false,
-      "is_sortable": true,
-      "is_virtual": false,
-      "reference": null,
-      "inverse_of": null,
-      "widget": null,
-      "validations": []
-    }, {
       "field": "created_at",
       "type": "Date",
       "default_value": null,
@@ -692,6 +677,21 @@
     }, {
       "field": "updated_at",
       "type": "Date",
+      "default_value": null,
+      "enums": null,
+      "integration": null,
+      "is_filterable": true,
+      "is_read_only": false,
+      "is_required": false,
+      "is_sortable": true,
+      "is_virtual": false,
+      "reference": null,
+      "inverse_of": null,
+      "widget": null,
+      "validations": []
+    }, {
+      "field": "stripe_id",
+      "type": "String",
       "default_value": null,
       "enums": null,
       "integration": null,
@@ -1005,6 +1005,78 @@
       "download": true,
       "fields": []
     }]
+  }, {
+    "name": "CustomerStat",
+    "name_old": "CustomerStat",
+    "icon": null,
+    "is_read_only": false,
+    "is_searchable": true,
+    "is_virtual": true,
+    "only_for_relationships": false,
+    "pagination_type": "page",
+    "fields": [{
+      "field": "id",
+      "type": "Number",
+      "default_value": null,
+      "enums": null,
+      "integration": null,
+      "is_filterable": false,
+      "is_read_only": true,
+      "is_required": false,
+      "is_sortable": false,
+      "is_virtual": true,
+      "reference": null,
+      "inverse_of": null,
+      "widget": null,
+      "validations": []
+    }, {
+      "field": "email",
+      "type": "String",
+      "default_value": null,
+      "enums": null,
+      "integration": null,
+      "is_filterable": false,
+      "is_read_only": true,
+      "is_required": false,
+      "is_sortable": false,
+      "is_virtual": true,
+      "reference": null,
+      "inverse_of": null,
+      "widget": null,
+      "validations": []
+    }, {
+      "field": "orders_count",
+      "type": "Number",
+      "default_value": null,
+      "enums": null,
+      "integration": null,
+      "is_filterable": false,
+      "is_read_only": true,
+      "is_required": false,
+      "is_sortable": false,
+      "is_virtual": true,
+      "reference": null,
+      "inverse_of": null,
+      "widget": null,
+      "validations": []
+    }, {
+      "field": "total_amount",
+      "type": "Number",
+      "default_value": null,
+      "enums": null,
+      "integration": null,
+      "is_filterable": false,
+      "is_read_only": true,
+      "is_required": false,
+      "is_sortable": false,
+      "is_virtual": true,
+      "reference": null,
+      "inverse_of": null,
+      "widget": null,
+      "validations": []
+    }],
+    "segments": [],
+    "actions": []
   }, {
     "name": "Customer_mixpanel_events",
     "name_old": "Customer_mixpanel_events",
@@ -2721,7 +2793,7 @@
       "widget": null,
       "validations": []
     }, {
-      "field": "being_processed_at",
+      "field": "created_at",
       "type": "Date",
       "default_value": null,
       "enums": null,
@@ -2736,37 +2808,7 @@
       "widget": null,
       "validations": []
     }, {
-      "field": "ready_for_shipping_at",
-      "type": "Date",
-      "default_value": null,
-      "enums": null,
-      "integration": null,
-      "is_filterable": true,
-      "is_read_only": false,
-      "is_required": false,
-      "is_sortable": true,
-      "is_virtual": false,
-      "reference": null,
-      "inverse_of": null,
-      "widget": null,
-      "validations": []
-    }, {
-      "field": "in_transit_at",
-      "type": "Date",
-      "default_value": null,
-      "enums": null,
-      "integration": null,
-      "is_filterable": true,
-      "is_read_only": false,
-      "is_required": false,
-      "is_sortable": true,
-      "is_virtual": false,
-      "reference": null,
-      "inverse_of": null,
-      "widget": null,
-      "validations": []
-    }, {
-      "field": "shipped_at",
+      "field": "updated_at",
       "type": "Date",
       "default_value": null,
       "enums": null,
@@ -2813,6 +2855,21 @@
       "widget": null,
       "validations": []
     }, {
+      "field": "being_processed_at",
+      "type": "Date",
+      "default_value": null,
+      "enums": null,
+      "integration": null,
+      "is_filterable": true,
+      "is_read_only": false,
+      "is_required": false,
+      "is_sortable": true,
+      "is_virtual": false,
+      "reference": null,
+      "inverse_of": null,
+      "widget": null,
+      "validations": []
+    }, {
       "field": "delivery_id",
       "type": "Number",
       "default_value": null,
@@ -2828,7 +2885,7 @@
       "widget": null,
       "validations": []
     }, {
-      "field": "created_at",
+      "field": "ready_for_shipping_at",
       "type": "Date",
       "default_value": null,
       "enums": null,
@@ -2843,7 +2900,22 @@
       "widget": null,
       "validations": []
     }, {
-      "field": "updated_at",
+      "field": "in_transit_at",
+      "type": "Date",
+      "default_value": null,
+      "enums": null,
+      "integration": null,
+      "is_filterable": true,
+      "is_read_only": false,
+      "is_required": false,
+      "is_sortable": true,
+      "is_virtual": false,
+      "reference": null,
+      "inverse_of": null,
+      "widget": null,
+      "validations": []
+    }, {
+      "field": "shipped_at",
       "type": "Date",
       "default_value": null,
       "enums": null,
@@ -2996,6 +3068,36 @@
       "widget": null,
       "validations": []
     }, {
+      "field": "created_at",
+      "type": "Date",
+      "default_value": null,
+      "enums": null,
+      "integration": null,
+      "is_filterable": true,
+      "is_read_only": false,
+      "is_required": false,
+      "is_sortable": true,
+      "is_virtual": false,
+      "reference": null,
+      "inverse_of": null,
+      "widget": null,
+      "validations": []
+    }, {
+      "field": "updated_at",
+      "type": "Date",
+      "default_value": null,
+      "enums": null,
+      "integration": null,
+      "is_filterable": true,
+      "is_read_only": false,
+      "is_required": false,
+      "is_sortable": true,
+      "is_virtual": false,
+      "reference": null,
+      "inverse_of": null,
+      "widget": null,
+      "validations": []
+    }, {
       "field": "price",
       "type": "Number",
       "default_value": null,
@@ -3028,36 +3130,6 @@
     }, {
       "field": "picture",
       "type": "String",
-      "default_value": null,
-      "enums": null,
-      "integration": null,
-      "is_filterable": true,
-      "is_read_only": false,
-      "is_required": false,
-      "is_sortable": true,
-      "is_virtual": false,
-      "reference": null,
-      "inverse_of": null,
-      "widget": null,
-      "validations": []
-    }, {
-      "field": "created_at",
-      "type": "Date",
-      "default_value": null,
-      "enums": null,
-      "integration": null,
-      "is_filterable": true,
-      "is_read_only": false,
-      "is_required": false,
-      "is_sortable": true,
-      "is_virtual": false,
-      "reference": null,
-      "inverse_of": null,
-      "widget": null,
-      "validations": []
-    }, {
-      "field": "updated_at",
-      "type": "Date",
       "default_value": null,
       "enums": null,
       "integration": null,
@@ -3299,14 +3371,25 @@
       "widget": null,
       "validations": []
     }, {
-      "field": "status",
-      "type": "Enum",
+      "field": "created_at",
+      "type": "Date",
       "default_value": null,
-      "enums": [
-        "to_validate",
-        "validated",
-        "rejected"
-      ],
+      "enums": null,
+      "integration": null,
+      "is_filterable": true,
+      "is_read_only": false,
+      "is_required": false,
+      "is_sortable": true,
+      "is_virtual": false,
+      "reference": null,
+      "inverse_of": null,
+      "widget": null,
+      "validations": []
+    }, {
+      "field": "updated_at",
+      "type": "Date",
+      "default_value": null,
+      "enums": null,
       "integration": null,
       "is_filterable": true,
       "is_read_only": false,
@@ -3350,25 +3433,14 @@
       "widget": null,
       "validations": []
     }, {
-      "field": "created_at",
-      "type": "Date",
+      "field": "status",
+      "type": "Enum",
       "default_value": null,
-      "enums": null,
-      "integration": null,
-      "is_filterable": true,
-      "is_read_only": false,
-      "is_required": false,
-      "is_sortable": true,
-      "is_virtual": false,
-      "reference": null,
-      "inverse_of": null,
-      "widget": null,
-      "validations": []
-    }, {
-      "field": "updated_at",
-      "type": "Date",
-      "default_value": null,
-      "enums": null,
+      "enums": [
+        "to_validate",
+        "validated",
+        "rejected"
+      ],
       "integration": null,
       "is_filterable": true,
       "is_read_only": false,
@@ -3667,7 +3739,7 @@
     "database_type": "postgresql",
     "framework_version": "5.2.0",
     "liana": "forest-rails",
-    "liana_version": "3.0.0-beta.11",
+    "liana_version": "3.1.0",
     "orm_version": "5.2.0"
   }
 }
