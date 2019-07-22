@@ -15,7 +15,6 @@ Rails.application.routes.draw do
 
     get '/CustomerStat' => 'customer_stats#index'
 
-
     get '/LegalDoc' => 'legal_docs#index'
     get '/LegalDoc/:id' => 'legal_docs#show'
     put '/LegalDoc/:id' => 'legal_docs#update'
