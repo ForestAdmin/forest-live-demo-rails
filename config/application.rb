@@ -20,7 +20,8 @@ module LiveDemoRails
       allow do
         origins 'app.forestadmin.com'
         resource '*', headers: :any, methods: :any,
-        expose: ['Content-Disposition']
+        expose: ['Content-Disposition'],
+        credentials: true
       end
     end
   end

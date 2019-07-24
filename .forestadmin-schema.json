@@ -735,21 +735,6 @@
       "widget": null,
       "validations": []
     }, {
-      "field": "sponsor_id",
-      "type": "Number",
-      "default_value": null,
-      "enums": null,
-      "integration": null,
-      "is_filterable": true,
-      "is_read_only": false,
-      "is_required": false,
-      "is_sortable": true,
-      "is_virtual": false,
-      "reference": null,
-      "inverse_of": null,
-      "widget": null,
-      "validations": []
-    }, {
       "field": "phone",
       "type": "String",
       "default_value": null,
@@ -1020,6 +1005,78 @@
       "download": true,
       "fields": []
     }]
+  }, {
+    "name": "CustomerStat",
+    "name_old": "CustomerStat",
+    "icon": null,
+    "is_read_only": false,
+    "is_searchable": true,
+    "is_virtual": true,
+    "only_for_relationships": false,
+    "pagination_type": "page",
+    "fields": [{
+      "field": "id",
+      "type": "Number",
+      "default_value": null,
+      "enums": null,
+      "integration": null,
+      "is_filterable": false,
+      "is_read_only": true,
+      "is_required": false,
+      "is_sortable": false,
+      "is_virtual": true,
+      "reference": null,
+      "inverse_of": null,
+      "widget": null,
+      "validations": []
+    }, {
+      "field": "email",
+      "type": "String",
+      "default_value": null,
+      "enums": null,
+      "integration": null,
+      "is_filterable": false,
+      "is_read_only": true,
+      "is_required": false,
+      "is_sortable": false,
+      "is_virtual": true,
+      "reference": null,
+      "inverse_of": null,
+      "widget": null,
+      "validations": []
+    }, {
+      "field": "orders_count",
+      "type": "Number",
+      "default_value": null,
+      "enums": null,
+      "integration": null,
+      "is_filterable": false,
+      "is_read_only": true,
+      "is_required": false,
+      "is_sortable": false,
+      "is_virtual": true,
+      "reference": null,
+      "inverse_of": null,
+      "widget": null,
+      "validations": []
+    }, {
+      "field": "total_amount",
+      "type": "Number",
+      "default_value": null,
+      "enums": null,
+      "integration": null,
+      "is_filterable": false,
+      "is_read_only": true,
+      "is_required": false,
+      "is_sortable": false,
+      "is_virtual": true,
+      "reference": null,
+      "inverse_of": null,
+      "widget": null,
+      "validations": []
+    }],
+    "segments": [],
+    "actions": []
   }, {
     "name": "Customer_mixpanel_events",
     "name_old": "Customer_mixpanel_events",
@@ -3682,7 +3739,7 @@
     "database_type": "postgresql",
     "framework_version": "5.2.0",
     "liana": "forest-rails",
-    "liana_version": "3.0.0-beta.8",
+    "liana_version": "3.1.0",
     "orm_version": "5.2.0"
   }
 }
