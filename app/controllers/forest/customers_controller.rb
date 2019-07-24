@@ -7,33 +7,22 @@ class Forest::CustomersController < ForestLiana::ApplicationController
   end
 
   def charge_credit_card
-    customer_id = params.dig('data', 'attributes', 'ids')[0]
     amount = params.dig('data', 'attributes', 'values', 'amount').to_i
-    description = params.dig('data', 'attributes', 'values', 'description')
-
-    customer = Customer.find(customer_id)
-
-    response = Stripe::Charge.create(
-      amount: amount * 100,
-      currency: 'usd',
-      customer: customer.stripe_id,
-      description: description
-    )
 
     render json: { html: <<EOF
-<p class="c-clr-1-4 l-mt l-mb">$#{response.amount / 100.0} USD has been successfuly charged.</p>
+<p class="c-clr-1-4 l-mt l-mb">$#{amount / 100.0} USD has been successfuly charged.</p>
 
 <strong class="c-form__label--read c-clr-1-2">Credit card</strong>
-<p class="c-clr-1-4 l-mb">**** **** **** #{response.source.last4}</p>
+<p class="c-clr-1-4 l-mb">**** **** **** 1234</p>
 
 <strong class="c-form__label--read c-clr-1-2">Expire</strong>
-<p class="c-clr-1-4 l-mb">#{response.source.exp_month}/#{response.source.exp_year}</p>
+<p class="c-clr-1-4 l-mb">09/35</p>
 
 <strong class="c-form__label--read c-clr-1-2">Card type</strong>
-<p class="c-clr-1-4 l-mb">#{response.source.brand}</p>
+<p class="c-clr-1-4 l-mb">VISA</p>
 
 <strong class="c-form__label--read c-clr-1-2">Country</strong>
-<p class="c-clr-1-4 l-mb">#{response.source.country}</p>
+<p class="c-clr-1-4 l-mb">USA</p>
 EOF
     }
   end
