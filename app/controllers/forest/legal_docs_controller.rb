@@ -15,21 +15,13 @@ class Forest::LegalDocsController < ForestLiana::ApplicationController
   end
 
   def update
-    file_id = params.dig('data', 'id')
-    is_verified = params.dig('data', 'attributes', 'is_verified')
-
-    document = Document.find_by(file_id: file_id)
-    document.is_verified = is_verified
-    document.save
-
-    show
+    render body: 'You can only read data on this public demo application.',
+      status: 403
   end
 
   def destroy
-    Forest::S3Helper.new.delete_file(params[:id])
-    Document.find_by(file_id: params[:id]).destroy
-
-    head :no_content
+    render body: 'You can only read data on this public demo application.',
+      status: 403
   end
 
   private
