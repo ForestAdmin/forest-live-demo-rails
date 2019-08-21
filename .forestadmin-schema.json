@@ -721,7 +721,7 @@
       "validations": []
     }, {
       "field": "birth_date",
-      "type": "Date",
+      "type": "Dateonly",
       "default_value": null,
       "enums": null,
       "integration": null,
