@@ -54,7 +54,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'pg'
-gem 'forest_liana', '4.0.0.pre.beta.0'
+gem 'forest_liana', '5.0.0-beta.0'
 gem 'rack-cors'
 gem 'aws-sdk-s3', '~> 1'
 gem 'stripe'
