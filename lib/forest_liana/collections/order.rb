@@ -4,6 +4,6 @@ class Forest::Order
   collection :Order
 
   belongs_to :delivery_address, reference: 'Address.id' do
-    object.customer.address
+    object.customer ? object.customer.address : nil
   end
 end
