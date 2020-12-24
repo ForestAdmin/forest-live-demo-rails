@@ -7,3 +7,4 @@ postgres :
     - POSTGRES_DB=forest_live_demo_rails
     - POSTGRES_USER=forest
     - POSTGRES_PASSWORD=secret
+  restart: unless-stopped
