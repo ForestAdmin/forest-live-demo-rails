@@ -3,20 +3,47 @@ class Forest::Customer
 
   collection :Customer
 
-  action 'Charge credit card', type: 'single', fields: [{
-    field: 'amount',
-    is_required: true,
-    description: 'The amount (USD) to charge the credit card. Example: 42.50',
-    type: 'Number'
-  }, {
-    field: 'description',
-    is_required: true,
-    description: 'Explain the reason why you want to charge manually the customer here',
-    type: 'String'
-  },{
-    field: 'stripe_id',
-    type: 'String',
-  }]
+  action 'Charge credit card',
+         type: 'single',
+         fields: [{
+                      field: 'amount',
+                      is_required: true,
+                      description: 'The amount (USD) to charge the credit card. Example: 42.50',
+                      type: 'Number'
+                  }, {
+                      field: 'description',
+                      is_required: true,
+                      description: 'Explain the reason why you want to charge manually the customer here',
+                      type: 'String',
+                      widget: 'rich text editor'
+                  },{
+                      field: 'stripe_id',
+                      type: 'String'
+                  },{
+                     field: 'baz',
+                     type: 'Enum',
+                     enums: ['a', 'b', 'c']
+                   },],
+         hooks: {
+             :load => -> (context){
+               context[:fields]['amount'][:value] = 1000
+               context[:fields]['description'][:value] = 'foo'
+               return context[:fields]
+             },
+             :change => {
+                 'amount' => -> (context){
+                    context[:fields]['amount'][:value] = 2000
+
+                    context[:fields]['baz'][:enums] = ['c', 'd', 'e']
+
+                    return context[:fields]
+                 },
+                 'description' => -> (context){
+                   context[:fields]['description'][:value] = 'bar'
+                   return context[:fields]
+                 }
+             }
+         }
 
   action 'Generate invoice', download: true
 
