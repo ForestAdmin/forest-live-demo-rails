@@ -721,7 +721,7 @@
       "validations": []
     }, {
       "field": "birth_date",
-      "type": "Date",
+      "type": "Dateonly",
       "default_value": null,
       "enums": null,
       "integration": null,
@@ -3737,9 +3737,9 @@
   }],
   "meta": {
     "database_type": "postgresql",
-    "framework_version": "5.2.1",
+    "framework_version": "6.0.0",
     "liana": "forest-rails",
     "liana_version": "5.2.2",
-    "orm_version": "5.2.1"
+    "orm_version": "6.0.0"
   }
 }
