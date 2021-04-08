@@ -2,7 +2,7 @@ require 'aws-sdk-s3'
 
 class Forest::S3Helper
   # Regexp to match the RFC2397 prefix.
-  REGEXP = /\Adata:([-\w]+\/[-\w\+\.]+)?;base64,(.*)/m
+  REGEXP = /\Adata:([-\w]+\/[-\w\+\.]+)?(;[-\w]+=[^;]*)*;base64,(.*)/m
 
   Aws.config.update({
     region: ENV['S3_REGION'],
@@ -67,7 +67,7 @@ class Forest::S3Helper
 
   def opts(data_uri_parts)
     {
-      body: data_uri_parts[2],
+      body: data_uri_parts[3],
       content_encoding: 'base64',
       content_disposition: 'inline',
       content_type: filetype(data_uri_parts),
