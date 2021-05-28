@@ -501,7 +501,11 @@
       "http_method": "POST",
       "redirect": null,
       "download": false,
-      "fields": []
+      "fields": [],
+      "hooks": {
+        "load": false,
+        "change": []
+      }
     }, {
       "name": "Add new transaction",
       "type": "bulk",
@@ -516,6 +520,7 @@
         "default_value": null,
         "enums": null,
         "is_required": false,
+        "is_read_only": false,
         "reference": "Company.id",
         "description": "Name of the company who will receive the transaction.",
         "position": 0,
@@ -526,11 +531,16 @@
         "default_value": null,
         "enums": null,
         "is_required": false,
+        "is_read_only": false,
         "reference": null,
         "description": null,
         "position": 1,
         "widget": null
-      }]
+      }],
+      "hooks": {
+        "load": false,
+        "change": []
+      }
     }, {
       "name": "Upload Legal Docs",
       "type": "single",
@@ -545,6 +555,7 @@
         "default_value": null,
         "enums": null,
         "is_required": true,
+        "is_read_only": false,
         "reference": null,
         "description": "The legal document relating to the formation of a company or corporation.",
         "position": 0,
@@ -555,6 +566,7 @@
         "default_value": null,
         "enums": null,
         "is_required": true,
+        "is_read_only": false,
         "reference": null,
         "description": "(Electricity, Gas, Water, Internet, Landline & Mobile Phone Invoice / Payment Schedule) no older than 3 months of the legal representative of your company",
         "position": 1,
@@ -565,6 +577,7 @@
         "default_value": null,
         "enums": null,
         "is_required": true,
+        "is_read_only": false,
         "reference": null,
         "description": "PDF including company name as well as IBAN",
         "position": 2,
@@ -575,11 +588,16 @@
         "default_value": null,
         "enums": null,
         "is_required": true,
+        "is_read_only": false,
         "reference": null,
         "description": "ID card or passport if the document has been issued in the EU, EFTA, or EEA / ID card or passport + resident permit or driving licence if the document has been issued outside the EU, EFTA, or EEA of the legal representative of your company",
         "position": 3,
         "widget": null
-      }]
+      }],
+      "hooks": {
+        "load": false,
+        "change": []
+      }
     }, {
       "name": "Whoami",
       "type": "global",
@@ -588,7 +606,11 @@
       "http_method": "GET",
       "redirect": null,
       "download": false,
-      "fields": []
+      "fields": [],
+      "hooks": {
+        "load": false,
+        "change": []
+      }
     }]
   }, {
     "name": "Customer",
@@ -970,6 +992,7 @@
         "default_value": null,
         "enums": null,
         "is_required": true,
+        "is_read_only": false,
         "reference": null,
         "description": "The amount (USD) to charge the credit card. Example: 42.50",
         "position": 0,
@@ -980,6 +1003,7 @@
         "default_value": null,
         "enums": null,
         "is_required": true,
+        "is_read_only": false,
         "reference": null,
         "description": "Explain the reason why you want to charge manually the customer here",
         "position": 1,
@@ -990,11 +1014,16 @@
         "default_value": null,
         "enums": null,
         "is_required": false,
+        "is_read_only": false,
         "reference": null,
         "description": null,
         "position": 2,
         "widget": null
-      }]
+      }],
+      "hooks": {
+        "load": false,
+        "change": []
+      }
     }, {
       "name": "Generate invoice",
       "type": "bulk",
@@ -1003,7 +1032,11 @@
       "http_method": "POST",
       "redirect": null,
       "download": true,
-      "fields": []
+      "fields": [],
+      "hooks": {
+        "load": false,
+        "change": []
+      }
     }]
   }, {
     "name": "CustomerStat",
@@ -1847,6 +1880,54 @@
       "widget": null,
       "validations": null
     }, {
+      "field": "amount_paid",
+      "type": "Number",
+      "default_value": null,
+      "enums": null,
+      "integration": null,
+      "is_filterable": false,
+      "is_read_only": false,
+      "is_required": false,
+      "is_sortable": true,
+      "is_virtual": false,
+      "reference": null,
+      "inverse_of": null,
+      "relationship": null,
+      "widget": null,
+      "validations": null
+    }, {
+      "field": "amount_remaining",
+      "type": "Number",
+      "default_value": null,
+      "enums": null,
+      "integration": null,
+      "is_filterable": false,
+      "is_read_only": false,
+      "is_required": false,
+      "is_sortable": true,
+      "is_virtual": false,
+      "reference": null,
+      "inverse_of": null,
+      "relationship": null,
+      "widget": null,
+      "validations": null
+    }, {
+      "field": "application_fee_amount",
+      "type": "Number",
+      "default_value": null,
+      "enums": null,
+      "integration": null,
+      "is_filterable": false,
+      "is_read_only": false,
+      "is_required": false,
+      "is_sortable": true,
+      "is_virtual": false,
+      "reference": null,
+      "inverse_of": null,
+      "relationship": null,
+      "widget": null,
+      "validations": null
+    }, {
       "field": "attempt_count",
       "type": "Number",
       "default_value": null,
@@ -1879,22 +1960,6 @@
       "widget": null,
       "validations": null
     }, {
-      "field": "closed",
-      "type": "Boolean",
-      "default_value": null,
-      "enums": null,
-      "integration": null,
-      "is_filterable": false,
-      "is_read_only": false,
-      "is_required": false,
-      "is_sortable": true,
-      "is_virtual": false,
-      "reference": null,
-      "inverse_of": null,
-      "relationship": null,
-      "widget": null,
-      "validations": null
-    }, {
       "field": "currency",
       "type": "String",
       "default_value": null,
@@ -1911,24 +1976,8 @@
       "widget": null,
       "validations": null
     }, {
-      "field": "date",
+      "field": "due_date",
       "type": "Date",
-      "default_value": null,
-      "enums": null,
-      "integration": null,
-      "is_filterable": false,
-      "is_read_only": false,
-      "is_required": false,
-      "is_sortable": true,
-      "is_virtual": false,
-      "reference": null,
-      "inverse_of": null,
-      "relationship": null,
-      "widget": null,
-      "validations": null
-    }, {
-      "field": "forgiven",
-      "type": "Boolean",
       "default_value": null,
       "enums": null,
       "integration": null,
@@ -1975,6 +2024,28 @@
       "widget": null,
       "validations": null
     }, {
+      "field": "status",
+      "type": "String",
+      "default_value": null,
+      "enums": [
+        "draft",
+        "open",
+        "paid",
+        "uncollectible",
+        "void"
+      ],
+      "integration": null,
+      "is_filterable": false,
+      "is_read_only": false,
+      "is_required": false,
+      "is_sortable": true,
+      "is_virtual": false,
+      "reference": null,
+      "inverse_of": null,
+      "relationship": null,
+      "widget": null,
+      "validations": null
+    }, {
       "field": "subtotal",
       "type": "Number",
       "default_value": null,
@@ -2007,39 +2078,7 @@
       "widget": null,
       "validations": null
     }, {
-      "field": "application_fee",
-      "type": "Number",
-      "default_value": null,
-      "enums": null,
-      "integration": null,
-      "is_filterable": false,
-      "is_read_only": false,
-      "is_required": false,
-      "is_sortable": true,
-      "is_virtual": false,
-      "reference": null,
-      "inverse_of": null,
-      "relationship": null,
-      "widget": null,
-      "validations": null
-    }, {
       "field": "tax",
-      "type": "Number",
-      "default_value": null,
-      "enums": null,
-      "integration": null,
-      "is_filterable": false,
-      "is_read_only": false,
-      "is_required": false,
-      "is_sortable": true,
-      "is_virtual": false,
-      "reference": null,
-      "inverse_of": null,
-      "relationship": null,
-      "widget": null,
-      "validations": null
-    }, {
-      "field": "tax_percent",
       "type": "Number",
       "default_value": null,
       "enums": null,
@@ -2221,7 +2260,11 @@
       "http_method": "POST",
       "redirect": null,
       "download": false,
-      "fields": []
+      "fields": [],
+      "hooks": {
+        "load": false,
+        "change": []
+      }
     }]
   }, {
     "name": "Customer_stripe_subscriptions",
@@ -3191,6 +3234,7 @@
         "default_value": null,
         "enums": null,
         "is_required": true,
+        "is_read_only": false,
         "reference": null,
         "description": "A semicolon separated values file stores tabular data (numbers and text) in plain text",
         "position": 0,
@@ -3205,11 +3249,16 @@
           "toy"
         ],
         "is_required": true,
+        "is_read_only": false,
         "reference": null,
         "description": "Specify the product type to import",
         "position": 1,
         "widget": null
-      }]
+      }],
+      "hooks": {
+        "load": false,
+        "change": []
+      }
     }]
   }, {
     "name": "Transaction",
@@ -3506,7 +3555,11 @@
       "http_method": "POST",
       "redirect": null,
       "download": false,
-      "fields": []
+      "fields": [],
+      "hooks": {
+        "load": false,
+        "change": []
+      }
     }, {
       "name": "Reject Transaction",
       "type": "bulk",
@@ -3521,11 +3574,16 @@
         "default_value": null,
         "enums": null,
         "is_required": true,
+        "is_read_only": false,
         "reference": null,
         "description": "⚠️ The reason will be sent to the customer ⚠️",
         "position": 0,
         "widget": "text area"
-      }]
+      }],
+      "hooks": {
+        "load": false,
+        "change": []
+      }
     }]
   }, {
     "name": "Treatment",
@@ -3737,9 +3795,8 @@
   }],
   "meta": {
     "database_type": "postgresql",
-    "framework_version": "6.0.0",
     "liana": "forest-rails",
-    "liana_version": "5.2.2",
-    "orm_version": "6.0.0"
+    "liana_version": "6.4.0",
+    "orm_version": "6.1.3.2"
   }
 }

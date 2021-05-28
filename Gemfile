@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '6.0'
+gem 'rails', '6.1.3.2'
 # Use Puma as the app server
 gem 'puma', '~> 5.1'
 # Use SCSS for stylesheets
@@ -54,7 +54,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'pg'
-gem 'forest_liana', '5.2.2'
+gem 'forest_liana', '6.4.0'
 gem 'rack-cors'
 gem 'aws-sdk-s3', '~> 1'
 gem 'stripe'
