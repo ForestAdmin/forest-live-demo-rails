@@ -127,7 +127,7 @@ GEM
     jbuilder (2.8.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
-    jmespath (1.4.0)
+    jmespath (1.6.1)
     jsonapi-serializers (1.0.1)
       activesupport
     jwt (2.2.2)
