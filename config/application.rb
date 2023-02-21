@@ -24,5 +24,21 @@ module LiveDemoRails
         credentials: true
       end
     end
+
+    null_regex = Regexp.new(/\Anull\z/)
+    
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        hostnames = [null_regex, 'localhost:4200', 'app.forestadmin.com', 'localhost:3001']
+        hostnames += ENV['CORS_ORIGINS'].split(',') if ENV['CORS_ORIGINS']
+
+        origins hostnames
+        resource '*',
+          headers: :any,
+          methods: :any,
+          expose: ['Content-Disposition'],
+          credentials: true
+      end
+    end
   end
 end

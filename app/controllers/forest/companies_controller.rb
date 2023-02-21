@@ -10,7 +10,7 @@ class Forest::CompaniesController < ForestLiana::ApplicationController
   def add_new_transaction
     attrs = params.dig('data','attributes', 'values')
     beneficiary_company_id = attrs['Beneficiary company']
-    emitter_company_id = ForestLiana::ResourcesGetter.get_ids_from_request(params)
+    emitter_company_id = ForestLiana::ResourcesGetter.get_ids_from_request(params, forest_user)
     amount = attrs['Amount']
     Transaction.create!(
       emitter_company_id: emitter_company_id,
