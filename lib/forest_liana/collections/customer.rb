@@ -44,7 +44,9 @@ class Forest::Customer
 
   field :full_address, type: 'String' do
     address = Address.find_by(customer_id: object.id)
-    "#{address[:address_line_1]} #{address[:address_line_2]} #{address[:address_city]} #{address[:country]}"
+    if (address)
+      "#{address[:address_line_1]} #{address[:address_line_2]} #{address[:address_city]} #{address[:country]}"
+    end
   end
 
   field :age, type: 'Number' do

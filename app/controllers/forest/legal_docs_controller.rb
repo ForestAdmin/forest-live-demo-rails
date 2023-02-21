@@ -4,14 +4,14 @@ class Forest::LegalDocsController < ForestLiana::ApplicationController
     files = Forest::S3Helper.new.files('livedemo/legal')
     files = files.map { |f| build_legal_doc(f) }
 
-    render json: JSONAPI::Serializer.serialize(files, is_collection: true)
+    render json: ForestAdmin::JSONAPI::Serializer.serialize(files, is_collection: true)
   end
 
   def show
     file = Forest::S3Helper.new.file(params[:id])
     file = build_legal_doc(file)
 
-    render json: JSONAPI::Serializer.serialize(file)
+    render json: ForestAdmin::JSONAPI::Serializer.serialize(file)
   end
 
   def update

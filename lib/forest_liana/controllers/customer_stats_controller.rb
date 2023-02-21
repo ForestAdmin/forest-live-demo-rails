@@ -4,7 +4,7 @@ class Forest::CustomerStatsController < ForestLiana::ApplicationController
   before_action :set_params, only: [:index]
 
   class BaseSerializer
-    include JSONAPI::Serializer
+    include ForestAdmin::JSONAPI::Serializer
 
     def type
       'customerStat'
