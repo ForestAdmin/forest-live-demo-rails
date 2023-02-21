@@ -16,20 +16,11 @@ module LiveDemoRails
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
-    config.middleware.insert_before 0, Rack::Cors do
-      allow do
-        origins 'app.forestadmin.com', 'future.forestadmin.com'
-        resource '*', headers: :any, methods: :any,
-        expose: ['Content-Disposition'],
-        credentials: true
-      end
-    end
-
     null_regex = Regexp.new(/\Anull\z/)
     
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        hostnames = [null_regex, 'localhost:4200', 'app.forestadmin.com', 'localhost:3001']
+        hostnames = [null_regex, 'localhost:4200', 'app.forestadmin.com', 'app.development.forestadmin.com', 'localhost:3001']
         hostnames += ENV['CORS_ORIGINS'].split(',') if ENV['CORS_ORIGINS']
 
         origins hostnames
