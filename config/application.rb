@@ -20,7 +20,7 @@ module LiveDemoRails
     
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        hostnames = [null_regex, 'localhost:4200', 'app.forestadmin.com', 'app.development.forestadmin.com', 'localhost:3001']
+        hostnames = [null_regex, 'localhost:4200', 'app.forestadmin.com', 'app.development.forestadmin.com', 'demo.forestadmin.com', 'localhost:3001']
         hostnames += ENV['CORS_ORIGINS'].split(',') if ENV['CORS_ORIGINS']
 
         origins hostnames
